@@ -1,6 +1,8 @@
+import Model from '../Components/Model';
 import classes from './NewPost.module.css';
 import { useState } from "react";
-function NewPost({ onCancel, onAddPost }) {
+import { Link } from 'react-router-dom';
+function NewPost({ onAddPost }) {
 
   const [submitedValue, updateSubmitedValue] = useState({ name: '', body: '' })
 
@@ -23,9 +25,9 @@ function NewPost({ onCancel, onAddPost }) {
       body: submitedValue.body
     }
     onAddPost(postData)
-    onCancel()
   }
   return (
+    <Model>
     <form className={classes.form} onSubmit = {submitHandler}>
       <p>
         <label htmlFor="body">Text</label>
@@ -36,10 +38,11 @@ function NewPost({ onCancel, onAddPost }) {
         <input type="text" id="name" required onChange={changeNameHandler} />
       </p>
       <p className={classes.actions}>
-        <button type='button' onClick={onCancel}>Cancel</button>
+        <Link to = '..' type='button' >Cancel</Link>
         <button>Submit</button>
       </p>
     </form>
+    </Model>
   );
 }
 
